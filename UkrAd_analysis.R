@@ -230,7 +230,7 @@ for(it in PSEI_iterations) {
   PSEI_testdists[it] <- output
 }
 par(mfrow = c(2, 2))
-plot(density(PSEI_distances), col="red", ylim=c(0,80), xaxs="i", yaxs="i", main = "PSEI Density Comparison", xlab = "Euclidean distance")
+plot(density(PSEI_distances), col="red", ylim=c(0,80), xlim=c(0,0.6), xaxs="i", yaxs="i", main = "PSEI Density Comparison", xlab = "Euclidean distance")
 for(i in 1:length(PSEI_iterations)) {
   lines(density(na.omit(PSEI_testdists[,i])), col="lightgrey")
 }
@@ -249,7 +249,7 @@ for(it in SEIA_iterations) {
   SEIA_testdists[it] <- output
 }
 
-plot(density(SEIA_distances), col="blue", ylim=c(0,80), xaxs="i", yaxs="i", main = "SEIA Density Comparison", xlab = "Euclidean distance")
+plot(density(SEIA_distances), col="blue", ylim=c(0,80), xlim=c(0,0.6), xaxs="i", yaxs="i", main = "SEIA Density Comparison", xlab = "Euclidean distance")
 for(i in 1:length(SEIA_iterations)) {
   lines(density(na.omit(SEIA_testdists[,i])), col="lightgrey")
 }
@@ -268,7 +268,7 @@ for(it in IAEM_iterations) {
   IAEM_testdists[it] <- output
 }
 
-plot(density(IAEM_distances), col="purple", ylim=c(0,80), xaxs="i", yaxs="i", main = "IAEM Density Comparison", xlab = "Euclidean distance")
+plot(density(IAEM_distances), col="purple", ylim=c(0,80), xlim=c(0,0.6), xaxs="i", yaxs="i", main = "IAEM Density Comparison", xlab = "Euclidean distance")
 for(i in 1:length(IAEM_iterations)) {
   lines(density(na.omit(IAEM_testdists[,i])), col="lightgrey")
 }
@@ -287,7 +287,7 @@ for(it in LMEM_iterations) {
   LMEM_testdists[it] <- output
 }
 
-plot(density(LMEM_distances), col="green", ylim=c(0,80), xaxs="i", yaxs="i", main = "LMEM Density Comparison", xlab = "Euclidean distance")
+plot(density(LMEM_distances), col="green", ylim=c(0,80), xlim=c(0,0.6), xaxs="i", yaxs="i", main = "LMEM Density Comparison", xlab = "Euclidean distance")
 for(i in 1:length(LMEM_iterations)) {
   lines(density(na.omit(LMEM_testdists[,i])), col="lightgrey")
 }
