@@ -91,7 +91,7 @@ colnames(refdata) <- c("dataset", "midpoint_lat", "midpoint_long", "radius_km")
 
 ##  Sample Ns below; test sample data range randomly downsampled to same N.
 ## IAEM LMEM PSEI SEIA 
-##  27   19   15   29  
+##  26   19   15   27  
 
 dist_haversine <- function(lat1, lon1, lat2, lon2) {
   dlat <- (lat2 - lat1) * pi / 180
@@ -132,7 +132,7 @@ for(i in 1:nrow(random100)) {
   midpoint_long <- random100$Long.[i]
   dg_radius <- as.numeric(refdata$radius_km[refdata$dataset=="SEIA"])
   filtered_coords <- filter_coordinates_by_radius(SEIA, midpoint_lat, midpoint_long, dg_radius)
-  filtered_data <- filtered_coords[sample(nrow(filtered_coords), 29, replace = TRUE), ] ## downsample to UkrAd DateGroup N 
+  filtered_data <- filtered_coords[sample(nrow(filtered_coords), 27, replace = TRUE), ] ## downsample to UkrAd DateGroup N 
   filtered_data <- filtered_data[!duplicated(filtered_data$`Genetic ID`), ] ## remove duplicates from previous replacement being true
   output <- as.matrix(cbind(as.vector(rep(paste("SEIA_",i,sep=""), times=length(filtered_data$`Genetic ID`))), filtered_data$`Genetic ID`, filtered_data$`Master ID`, filtered_data$meandate, filtered_data$`Group ID`, filtered_data$Lat., filtered_data$Long.))
   print(filtered_data)
@@ -148,7 +148,7 @@ for(i in 1:nrow(random100)) {
   midpoint_long <- random100$Long.[i]
   dg_radius <- as.numeric(refdata$radius_km[refdata$dataset=="IAEM"])
   filtered_coords <- filter_coordinates_by_radius(IAEM, midpoint_lat, midpoint_long, dg_radius)
-  filtered_data <- filtered_coords[sample(nrow(filtered_coords), 27, replace = TRUE), ] ## downsample to UkrAd DateGroup N 
+  filtered_data <- filtered_coords[sample(nrow(filtered_coords), 26, replace = TRUE), ] ## downsample to UkrAd DateGroup N 
   filtered_data <- filtered_data[!duplicated(filtered_data$`Genetic ID`), ] ## remove duplicates from previous replacement being true
   output <- as.matrix(cbind(as.vector(rep(paste("IAEM_",i,sep=""), times=length(filtered_data$`Genetic ID`))), filtered_data$`Genetic ID`, filtered_data$`Master ID`, filtered_data$meandate, filtered_data$`Group ID`, filtered_data$Lat., filtered_data$Long.))
   print(filtered_data)
@@ -239,13 +239,13 @@ lines(density(PSEI_distances), col="red")
 
 ##run SEIA comparison
 SEIA_iterations <- as.vector(unique(SEIA_testdata$iteration))
-SEIA_testdists = data.frame(matrix(ncol = length(SEIA_iterations), nrow = 406)) ###29 choose 2
+SEIA_testdists = data.frame(matrix(ncol = length(SEIA_iterations), nrow = 351)) ###27 choose 2
 colnames(SEIA_testdists) = SEIA_iterations
 for(it in SEIA_iterations) {
   mat <- data_evec[match(SEIA_testdata$Master_ID[SEIA_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
   outdist <- c(dist(cbind(mat[, c(2:21)])))
   #print(length(outdist))
-  output <- c(outdist, rep(NA, 406 - length(outdist)))
+  output <- c(outdist, rep(NA, 351 - length(outdist)))
   SEIA_testdists[it] <- output
 }
 
@@ -258,13 +258,13 @@ lines(density(SEIA_distances), col="blue")
 
 ##run IAEM comparison
 IAEM_iterations <- as.vector(unique(IAEM_testdata$iteration))
-IAEM_testdists = data.frame(matrix(ncol = length(IAEM_iterations), nrow = 351)) ###27 choose 2
+IAEM_testdists = data.frame(matrix(ncol = length(IAEM_iterations), nrow = 325)) ###26 choose 2
 colnames(IAEM_testdists) = IAEM_iterations
 for(it in IAEM_iterations) {
   mat <- data_evec[match(IAEM_testdata$Master_ID[IAEM_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
   outdist <- c(dist(cbind(mat[, c(2:21)])))
   #print(length(outdist))
-  output <- c(outdist, rep(NA, 351 - length(outdist)))
+  output <- c(outdist, rep(NA, 325 - length(outdist)))
   IAEM_testdists[it] <- output
 }
 
@@ -277,7 +277,7 @@ lines(density(IAEM_distances), col="purple")
 
 ##run LMEM comparison
 LMEM_iterations <- as.vector(unique(LMEM_testdata$iteration))
-LMEM_testdists = data.frame(matrix(ncol = length(LMEM_iterations), nrow = 171)) ###10 choose 2
+LMEM_testdists = data.frame(matrix(ncol = length(LMEM_iterations), nrow = 171)) ###19 choose 2
 colnames(LMEM_testdists) = LMEM_iterations
 for(it in LMEM_iterations) {
   mat <- data_evec[match(LMEM_testdata$Master_ID[LMEM_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
