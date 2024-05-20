@@ -110,7 +110,7 @@ filter_coordinates_by_radius <- function(dataset, midpoint_lat, midpoint_long, r
 
 
 PSEI_testdata = data.frame() ##for loop uses this to make a big dataframe with all sample IDs within the same radius of the 100 random PSEI samples
-random100 <- PSEI[sample(nrow(PSEI), 100, replace = FALSE), ]
+random100 <- PSEI[sample(nrow(PSEI), 150, replace = FALSE), ] ##>100 subgroups made, some lost due to <10 filtering; reduced to 100 below
 for(i in 1:nrow(random100)) {
   midpoint_lat <- random100$Lat.[i]
   midpoint_long <- random100$Long.[i]
@@ -126,7 +126,7 @@ colnames(PSEI_testdata) <- c("iteration", "Genetic_ID", "Master_ID", "meandate",
 PSEI_testdata <- PSEI_testdata %>% group_by(iteration) %>% filter(n() >= 10) ##remove any with N < 10
 
 SEIA_testdata = data.frame() ##for loop uses this to make a big dataframe with all sample IDs within the same radius of the 100 random SEIA samples
-random100 <- SEIA[sample(nrow(SEIA), 100, replace = FALSE), ]
+random100 <- SEIA[sample(nrow(SEIA), 150, replace = FALSE), ]
 for(i in 1:nrow(random100)) {
   midpoint_lat <- random100$Lat.[i]
   midpoint_long <- random100$Long.[i]
@@ -142,7 +142,7 @@ colnames(SEIA_testdata) <- c("iteration", "Genetic_ID", "Master_ID", "meandate",
 SEIA_testdata <- SEIA_testdata %>% group_by(iteration) %>% filter(n() >= 10) ##remove any with N < 10
 
 IAEM_testdata = data.frame() ##for loop uses this to make a big dataframe with all sample IDs within the same radius of the 100 random IAEM samples
-random100 <- IAEM[sample(nrow(IAEM), 100, replace = FALSE), ]
+random100 <- IAEM[sample(nrow(IAEM), 150, replace = FALSE), ]
 for(i in 1:nrow(random100)) {
   midpoint_lat <- random100$Lat.[i]
   midpoint_long <- random100$Long.[i]
@@ -158,7 +158,7 @@ colnames(IAEM_testdata) <- c("iteration", "Genetic_ID", "Master_ID", "meandate",
 IAEM_testdata <- IAEM_testdata %>% group_by(iteration) %>% filter(n() >= 10) ##remove any with N < 10
 
 LMEM_testdata = data.frame() ##for loop uses this to make a big dataframe with all sample IDs within the same radius of the 100 random LMEM samples
-random100 <- LMEM[sample(nrow(LMEM), 100, replace = FALSE), ]
+random100 <- LMEM[sample(nrow(LMEM), 150, replace = FALSE), ]
 for(i in 1:nrow(random100)) {
   midpoint_lat <- random100$Lat.[i]
   midpoint_long <- random100$Long.[i]
@@ -210,7 +210,7 @@ ggplot() + ##plot samples by dategroup
 
 ##run PSEI comparison
 
-PSEI_iterations <- as.vector(unique(PSEI_testdata$iteration))
+PSEI_iterations <- as.vector(unique(PSEI_testdata$iteration))[1:100]
 PSEI_testdistres = data.frame()
 for(it in PSEI_iterations) {
   mat <- data_evec[match(PSEI_testdata$Master_ID[PSEI_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
@@ -238,7 +238,7 @@ lines(density(PSEI_distances), col="red")
      
 
 ##run SEIA comparison
-SEIA_iterations <- as.vector(unique(SEIA_testdata$iteration))
+SEIA_iterations <- as.vector(unique(SEIA_testdata$iteration))[1:100]
 SEIA_testdists = data.frame(matrix(ncol = length(SEIA_iterations), nrow = 351)) ###27 choose 2
 colnames(SEIA_testdists) = SEIA_iterations
 for(it in SEIA_iterations) {
@@ -257,7 +257,7 @@ lines(density(SEIA_distances), col="blue")
 
 
 ##run IAEM comparison
-IAEM_iterations <- as.vector(unique(IAEM_testdata$iteration))
+IAEM_iterations <- as.vector(unique(IAEM_testdata$iteration))[1:100]
 IAEM_testdists = data.frame(matrix(ncol = length(IAEM_iterations), nrow = 325)) ###26 choose 2
 colnames(IAEM_testdists) = IAEM_iterations
 for(it in IAEM_iterations) {
@@ -276,7 +276,7 @@ lines(density(IAEM_distances), col="purple")
 
 
 ##run LMEM comparison
-LMEM_iterations <- as.vector(unique(LMEM_testdata$iteration))
+LMEM_iterations <- as.vector(unique(LMEM_testdata$iteration))[1:100]
 LMEM_testdists = data.frame(matrix(ncol = length(LMEM_iterations), nrow = 171)) ###19 choose 2
 colnames(LMEM_testdists) = LMEM_iterations
 for(it in LMEM_iterations) {
