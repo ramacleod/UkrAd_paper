@@ -28,7 +28,7 @@ names(meta1240K) [5] <- "yearpublished"
 names(meta1240K) [10] <- "FullDate"
 meta1240K <- meta1240K[!duplicated(meta1240K$`Master ID`), ] ##remove duplicates under genetic ID
 
-####to run analysis using W. Eusrasion AADR subset in paper
+####to run analysis using W. Eurasian AADR subset made for this study
 data_evec$Master_ID <- str_match(data_evec$X1, ".*:(.*)")[,2]
 meta1240K <- meta1240K[match(data_evec$Master_ID, meta1240K$`Master ID`), nomatch=0]
 
