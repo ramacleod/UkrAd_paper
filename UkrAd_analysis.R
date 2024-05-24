@@ -224,7 +224,7 @@ PSEI_testdists = data.frame(matrix(ncol = length(PSEI_iterations), nrow = 105)) 
 colnames(PSEI_testdists) = PSEI_iterations
 for(it in PSEI_iterations) {
   mat <- data_evec[match(PSEI_testdata$Master_ID[PSEI_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
-  outdist <- c(dist(cbind(mat[, c(2:21)])))
+  outdist <- c(dist(cbind(mat[, c(2:26)])))
   #print(length(outdist))
   output <- c(outdist, rep(NA, 105 - length(outdist)))
   PSEI_testdists[it] <- output
@@ -243,7 +243,7 @@ SEIA_testdists = data.frame(matrix(ncol = length(SEIA_iterations), nrow = 351)) 
 colnames(SEIA_testdists) = SEIA_iterations
 for(it in SEIA_iterations) {
   mat <- data_evec[match(SEIA_testdata$Master_ID[SEIA_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
-  outdist <- c(dist(cbind(mat[, c(2:21)])))
+  outdist <- c(dist(cbind(mat[, c(2:26)])))
   #print(length(outdist))
   output <- c(outdist, rep(NA, 351 - length(outdist)))
   SEIA_testdists[it] <- output
@@ -262,7 +262,7 @@ IAEM_testdists = data.frame(matrix(ncol = length(IAEM_iterations), nrow = 325)) 
 colnames(IAEM_testdists) = IAEM_iterations
 for(it in IAEM_iterations) {
   mat <- data_evec[match(IAEM_testdata$Master_ID[IAEM_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
-  outdist <- c(dist(cbind(mat[, c(2:21)])))
+  outdist <- c(dist(cbind(mat[, c(2:26)])))
   #print(length(outdist))
   output <- c(outdist, rep(NA, 325 - length(outdist)))
   IAEM_testdists[it] <- output
@@ -281,7 +281,7 @@ LMEM_testdists = data.frame(matrix(ncol = length(LMEM_iterations), nrow = 171)) 
 colnames(LMEM_testdists) = LMEM_iterations
 for(it in LMEM_iterations) {
   mat <- data_evec[match(LMEM_testdata$Master_ID[LMEM_testdata$iteration == it], data_evec$Master_ID), nomatch=0]
-  outdist <- c(dist(cbind(mat[, c(2:21)])))
+  outdist <- c(dist(cbind(mat[, c(2:26)])))
   #print(length(outdist))
   output <- c(outdist, rep(NA, 171 - length(outdist)))
   LMEM_testdists[it] <- output
