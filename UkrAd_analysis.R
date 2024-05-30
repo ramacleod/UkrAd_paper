@@ -16,10 +16,9 @@ require(ggplot2)
 ##Set the following to your machine’s file directory details for the two files ‘ukrad_data.csv’ (see paper SI) and data.evec (eigenvectors output from smartpca, will add to github) 
 
 meta1240K <- read.csv('https://reichdata.hms.harvard.edu/pub/datasets/amh_repo/curated_releases/V54/V54.1.p1/SHARE/public.dir/v54.1.p1_HO_public.anno', sep="\t")
-data_evec <- read_table("Downloads/data.evec", 
-                         +     col_names = FALSE)
+data_evec <- read.csv("https://raw.githubusercontent.com/ramacleod/UkrAd_paper/main/data.evec", header=FALSE, sep = "\t")
 data_evec$Master_ID <- str_match(data_evec$X1, ".*:(.*)")[,2]
-ukrad_data <- read.csv(“Downloads/ukkrad_data.csv”)
+ukrad_data <- read.csv("https://raw.githubusercontent.com/ramacleod/UkrAd_paper/main/ukrad_metadata.csv")
 
 names(meta1240K) [8] <- "meandate"
 names(meta1240K) [7] <- "datemethod"
